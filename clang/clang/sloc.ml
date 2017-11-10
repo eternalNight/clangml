@@ -15,6 +15,8 @@ type characteristic_kind =
   | C_User
   | C_System
   | C_ExternCSystem
+  | C_User_ModuleMap
+  | C_System_ModuleMap
 
 type presumed_loc = {
   loc_filename : string;

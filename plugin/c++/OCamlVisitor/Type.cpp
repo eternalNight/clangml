@@ -407,5 +407,7 @@ OCamlVisitor::TraverseVariableArrayType (clang::VariableArrayType *T)
   return stack.push (mkVariableArrayType (element, size));
 }
 
+UNIMP_TYPE(DeducedTemplateSpecialization)
+UNIMP_TYPE(ObjCTypeParam)
 
 // }}}

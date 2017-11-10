@@ -623,7 +623,7 @@ OCamlVisitor::TraverseObjCDictionaryLiteral (clang::ObjCDictionaryLiteral *S)
   TRACE;
 
   std::vector<std::tuple<ptr<Expr>, ptr<Expr>>> map;
-  
+
   for (unsigned i = 0; i < S->getNumElements (); ++i)
     {
       ptr<Expr> key   = must_traverse (S->getKeyValueElement (i).Key  );
@@ -794,6 +794,18 @@ UNIMP_STMT (Expr, TypoExpr)
 UNIMP_STMT (Expr, UnresolvedLookupExpr)
 UNIMP_STMT (Expr, UnresolvedMemberExpr)
 UNIMP_STMT (Expr, UserDefinedLiteral)
-
+UNIMP_STMT (Expr, ArrayInitIndexExpr)
+UNIMP_STMT (Expr, ArrayInitLoopExpr)
+UNIMP_STMT (Expr, DependentCoawaitExpr)
+UNIMP_STMT (Expr, OMPTargetSimdDirective)
+UNIMP_STMT (Expr, OMPTargetTeamsDistributeDirective)
+UNIMP_STMT (Expr, OMPTargetTeamsDistributeParallelForDirective)
+UNIMP_STMT (Expr, OMPTargetTeamsDistributeParallelForSimdDirective)
+UNIMP_STMT (Expr, OMPTeamsDistributeDirective)
+UNIMP_STMT (Expr, OMPTeamsDistributeParallelForDirective)
+UNIMP_STMT (Expr, OMPTeamsDistributeParallelForSimdDirective)
+UNIMP_STMT (Expr, OMPTeamsDistributeSimdDirective)
+UNIMP_STMT (Expr, OMPTargetTeamsDirective)
+UNIMP_STMT (Expr, OMPTargetTeamsDistributeSimdDirective)
 
 // }}}

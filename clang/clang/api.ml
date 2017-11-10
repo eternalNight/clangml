@@ -208,8 +208,8 @@ let parse args continue =
 
       let c_compiler =
         first_command_found [
-          "clang-3.9"; (* linux *)
-          (Sys.getenv "HOME") ^ "/usr/clang39/bin/clang-3.9" (* osx *)
+          "clang-5.0"; (* linux *)
+          (Sys.getenv "HOME") ^ "/usr/clang39/bin/clang-5.0" (* osx *)
         ] in
 
       let argv =

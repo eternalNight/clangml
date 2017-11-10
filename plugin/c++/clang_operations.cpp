@@ -182,6 +182,8 @@ clang_characteristic_kind (value context, value sloc)
     case clang::SrcMgr::C_User: return value_of (ctx.values, sloc_bridge::C_User);
     case clang::SrcMgr::C_System: return value_of (ctx.values, sloc_bridge::C_System);
     case clang::SrcMgr::C_ExternCSystem: return value_of (ctx.values, sloc_bridge::C_ExternCSystem);
+    case clang::SrcMgr::C_User_ModuleMap: return value_of (ctx.values, sloc_bridge::C_User_ModuleMap);
+    case clang::SrcMgr::C_System_ModuleMap: return value_of (ctx.values, sloc_bridge::C_System_ModuleMap);
     }
 
   failwith ("invalid file characteristic kind");

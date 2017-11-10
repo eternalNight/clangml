@@ -455,5 +455,7 @@ OCamlVisitor::TraverseAdjustedTypeLoc (clang::AdjustedTypeLoc TL)
 
 UNIMP_TYPE_LOC (UnaryTransform)
 UNIMP_TYPE_LOC (UnresolvedUsing)
+UNIMP_TYPE_LOC (DeducedTemplateSpecialization)
+UNIMP_TYPE_LOC (ObjCTypeParam)
 
 // }}}

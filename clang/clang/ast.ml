@@ -307,6 +307,8 @@ type attributed_type_kind = AstBridge.attributed_type_kind =
  | ATK_swiftcall
  | ATK_preserve_most
  | ATK_preserve_all
+ | ATK_regcall
+ | ATK_ns_returns_retained
  deriving (Show)
 
 
@@ -485,6 +487,8 @@ type cast_kind = AstBridge.cast_kind =
   | CK_BuiltinFnToFnPtr
   | CK_ZeroToOCLEvent
   | CK_AddressSpaceConversion
+  | CK_ZeroToOCLQueue
+  | CK_IntToOCLSampler
   deriving (Show)
 
 
@@ -980,6 +984,20 @@ and expr_ = AstBridge.expr_ =
   | UnresolvedLookupExpr
   | UnresolvedMemberExpr
   | UserDefinedLiteral
+  | ArrayInitIndexExpr
+  | ArrayInitLoopExpr
+  | DependentCoawaitExpr
+  | OMPTargetSimdDirective
+  | OMPTargetTeamsDistributeDirective
+  | OMPTargetTeamsDistributeParallelForDirective
+  | OMPTargetTeamsDistributeParallelForSimdDirective
+  | OMPTeamsDistributeDirective
+  | OMPTeamsDistributeParallelForDirective
+  | OMPTeamsDistributeParallelForSimdDirective
+  | OMPTeamsDistributeSimdDirective
+  | OMPTargetTeamsDirective
+  | OMPTargetTeamsDistributeSimdDirective
+
 
 and offsetof_node = AstBridge.offsetof_node =
   | OON_Array			of expr
@@ -1158,6 +1176,8 @@ and tloc_ = AstBridge.tloc_ =
   | TemplateSpecializationTypeLoc
   | UnaryTransformTypeLoc
   | UnresolvedUsingTypeLoc
+  | DeducedTemplateSpecializationTypeLoc
+  | ObjCTypeParamTypeLoc
 
 
 and ctyp = AstBridge.ctyp = {
@@ -1225,6 +1245,8 @@ and ctyp_ = AstBridge.ctyp_ =
   | TemplateSpecializationType
   | UnaryTransformType
   | UnresolvedUsingType
+  | DeducedTemplateSpecializationType
+  | ObjCTypeParamType
 
 
 and decl = AstBridge.decl = {
@@ -1342,6 +1364,11 @@ and decl_ = AstBridge.decl_ =
   | OMPTargetParallelForSimdDirective
   | OMPDistributeParallelForSimdDirective
   | ObjCAvailabilityCheckExpr
+  | ExportDecl
+  | UsingPackDecl
+  | BindingDecl
+  | CXXDeductionGuideDecl
+  | DecompositionDecl
 
 and field_decl = AstBridge.field_decl = {
   fd_type : tloc;

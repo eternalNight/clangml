@@ -139,6 +139,8 @@ translate_attributed_type_kind (clang::AttributedType::Kind kind)
     case clang::AttributedType::Kind::attr_objc_kindof:          return ATK_objc_kindof;
     case clang::AttributedType::Kind::attr_objc_inert_unsafe_unretained:
       return ATK_objc_inert_unsafe_unretained;
+    case clang::AttributedType::Kind::attr_regcall:              return ATK_regcall;
+    case clang::AttributedType::Kind::attr_ns_returns_retained:  return ATK_ns_returns_retained;
     }
     throw std::runtime_error ("invalid attributed type kind");
 }
@@ -255,6 +257,8 @@ translate_cast_kind (clang::CastKind kind)
     case clang::CK_CopyAndAutoreleaseBlockObject:    return CK_CopyAndAutoreleaseBlockObject;
     case clang::CK_BuiltinFnToFnPtr:                 return CK_BuiltinFnToFnPtr;
     case clang::CK_ZeroToOCLEvent:                   return CK_ZeroToOCLEvent;
+    case clang::CK_ZeroToOCLQueue:                   return CK_ZeroToOCLQueue;
+    case clang::CK_IntToOCLSampler:                  return CK_IntToOCLSampler;
     }
   throw std::runtime_error ("invalid cast kind");
 }
@@ -449,9 +453,9 @@ translate_receiver_kind (clang::ObjCMessageExpr::ReceiverKind kind)
 {
   switch (kind)
     {
-    case clang::ObjCMessageExpr::Class:         return RK_Class;        
-    case clang::ObjCMessageExpr::Instance:      return RK_Instance;     
-    case clang::ObjCMessageExpr::SuperClass:    return RK_SuperClass;   
+    case clang::ObjCMessageExpr::Class:         return RK_Class;
+    case clang::ObjCMessageExpr::Instance:      return RK_Instance;
+    case clang::ObjCMessageExpr::SuperClass:    return RK_SuperClass;
     case clang::ObjCMessageExpr::SuperInstance: return RK_SuperInstance;
     }
   throw std::runtime_error ("invalid objc receiver kind");

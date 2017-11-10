@@ -160,6 +160,8 @@ let string_of_attributed_type_kind = function
   | ATK_swiftcall -> "swiftcall"
   | ATK_preserve_most -> "preserve_most"
   | ATK_preserve_all -> "preserve_all"
+  | ATK_regcall -> "regcall"
+  | ATK_ns_returns_retained -> "ns_returns_retained"
 
 let string_of_elaborated_type_keyword = function
   | ETK_Struct			-> "struct"
@@ -712,6 +714,19 @@ and pp_expr_ fmt = function
   | UnresolvedLookupExpr -> Format.pp_print_string fmt "<UnresolvedLookupExpr>"
   | UnresolvedMemberExpr -> Format.pp_print_string fmt "<UnresolvedMemberExpr>"
   | UserDefinedLiteral -> Format.pp_print_string fmt "<UserDefinedLiteral>"
+  | ArrayInitIndexExpr -> Format.pp_print_string fmt "<ArrayInitIndexExpr>"
+  | ArrayInitLoopExpr -> Format.pp_print_string fmt "<ArrayInitLoopExpr>"
+  | DependentCoawaitExpr -> Format.pp_print_string fmt "<DependentCoawaitExpr>"
+  | OMPTargetSimdDirective -> Format.pp_print_string fmt "<OMPTargetSimdDirective>"
+  | OMPTargetTeamsDistributeDirective -> Format.pp_print_string fmt "<OMPTargetTeamsDistributeDirective>"
+  | OMPTargetTeamsDistributeParallelForDirective -> Format.pp_print_string fmt "<OMPTargetTeamsDistributeParallelForDirective>"
+  | OMPTargetTeamsDistributeParallelForSimdDirective -> Format.pp_print_string fmt "<OMPTargetTeamsDistributeParallelForSimdDirective>"
+  | OMPTeamsDistributeDirective -> Format.pp_print_string fmt "<OMPTeamsDistributeDirective>"
+  | OMPTeamsDistributeParallelForDirective -> Format.pp_print_string fmt "<OMPTeamsDistributeParallelForDirective>"
+  | OMPTeamsDistributeParallelForSimdDirective -> Format.pp_print_string fmt "<OMPTeamsDistributeParallelForSimdDirective>"
+  | OMPTeamsDistributeSimdDirective -> Format.pp_print_string fmt "<OMPTeamsDistributeSimdDirective>"
+  | OMPTargetTeamsDirective -> Format.pp_print_string fmt "<OMPTargetTeamsDirective>"
+  | OMPTargetTeamsDistributeSimdDirective -> Format.pp_print_string fmt "<OMPTargetTeamsDistributeSimdDirective>"
 
 and pp_expr fmt expr =
   pp_expr_ fmt expr.e
@@ -998,6 +1013,8 @@ and pp_tloc_ fmt = function
   | TemplateTypeParmTypeLoc _ -> Format.pp_print_string fmt "<TemplateTypeParmTypeLoc>"
   | UnaryTransformTypeLoc -> Format.pp_print_string fmt "<UnaryTransformTypeLoc>"
   | UnresolvedUsingTypeLoc -> Format.pp_print_string fmt "<UnresolvedUsingTypeLoc>"
+  | DeducedTemplateSpecializationTypeLoc -> Format.pp_print_string fmt "<DeducedTemplateSpecializationTypeLoc>"
+  | ObjCTypeParamTypeLoc -> Format.pp_print_string fmt "<ObjCTypeParamTypeLoc>"
 
 and pp_tloc fmt tloc =
   pp_tloc_ fmt tloc.tl
@@ -1107,6 +1124,8 @@ and pp_ctyp_ fmt = function
   | TemplateTypeParmType _ -> Format.pp_print_string fmt "<TemplateTypeParmType>"
   | UnaryTransformType -> Format.pp_print_string fmt "<UnaryTransformType>"
   | UnresolvedUsingType -> Format.pp_print_string fmt "<UnresolvedUsingType>"
+  | DeducedTemplateSpecializationType -> Format.pp_print_string fmt "<DeducedTemplateSpecializationType>"
+  | ObjCTypeParamType -> Format.pp_print_string fmt "<ObjCTypeParamType>"
 
 
 and pp_ctyp fmt t =
@@ -1304,6 +1323,27 @@ and pp_decl_ fmt = function
   | ImplicitParamDecl -> Format.pp_print_string fmt "<ImplicitParamDecl>"
   | VarTemplateSpecializationDecl -> Format.pp_print_string fmt "<VarTemplateSpecializationDecl>"
   | VarTemplatePartialSpecializationDecl -> Format.pp_print_string fmt "<VarTemplatePartialSpecializationDecl>"
+  | PragmaCommentDecl -> Format.pp_print_string fmt "<PragmaCommentDecl>"
+  | OMPCapturedExprDecl -> Format.pp_print_string fmt "<OMPCapturedExprDecl>"
+  | OMPDeclareReductionDecl -> Format.pp_print_string fmt "<OMPDeclareReductionDecl>"
+  | CXXInheritedCtorInitExpr -> Format.pp_print_string fmt "<CXXInheritedCtorInitExpr>"
+  | OMPTargetUpdateDirective -> Format.pp_print_string fmt "<OMPTargetUpdateDirective>"
+  | PragmaDetectMismatchDecl -> Format.pp_print_string fmt "<PragmaDetectMismatchDecl>"
+  | ConstructorUsingShadowDecl -> Format.pp_print_string fmt "<ConstructorUsingShadowDecl>"
+  | OMPDistributeSimdDirective -> Format.pp_print_string fmt "<OMPDistributeSimdDirective>"
+  | OMPTargetExitDataDirective -> Format.pp_print_string fmt "<OMPTargetExitDataDirective>"
+  | OMPTargetParallelDirective -> Format.pp_print_string fmt "<OMPTargetParallelDirective>"
+  | OMPTargetEnterDataDirective -> Format.pp_print_string fmt "<OMPTargetEnterDataDirective>"
+  | OMPTargetParallelForDirective -> Format.pp_print_string fmt "<OMPTargetParallelForDirective>"
+  | OMPDistributeParallelForDirective -> Format.pp_print_string fmt "<OMPDistributeParallelForDirective>"
+  | OMPTargetParallelForSimdDirective -> Format.pp_print_string fmt "<OMPTargetParallelForSimdDirective>"
+  | OMPDistributeParallelForSimdDirective -> Format.pp_print_string fmt "<OMPDistributeParallelForSimdDirective>"
+  | ObjCAvailabilityCheckExpr -> Format.pp_print_string fmt "<>"
+  | ExportDecl -> Format.pp_print_string fmt "<ExportDecl>"
+  | UsingPackDecl -> Format.pp_print_string fmt "<UsingPackDecl>"
+  | BindingDecl -> Format.pp_print_string fmt "<BindingDecl>"
+  | CXXDeductionGuideDecl -> Format.pp_print_string fmt "<CXXDeductionGuideDecl>"
+  | DecompositionDecl -> Format.pp_print_string fmt "<DecompositionDecl>"
 
 and pp_decl fmt decl =
   pp_decl_ fmt decl.d

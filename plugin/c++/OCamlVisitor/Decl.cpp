@@ -41,6 +41,9 @@ OCamlVisitor::translate_declaration_name (clang::DeclarationName const &name)
     case clang::DeclarationName::CXXUsingDirective:
       printf ("CXXUsingDirective: %s\n", getNameAsString (name));
       break;
+    case clang::DeclarationName::CXXDeductionGuideName:
+      printf ("CXXDeductionGuideName: %s\n", getNameAsString (name));
+      break;
     }
 
   return mkDN_Identifier ("<invalid>");
@@ -51,7 +54,7 @@ ptr<FieldDecl>
 OCamlVisitor::createFieldDecl (clang::FieldDecl *D)
 {
   ptr<FieldDecl> field = mkFieldDecl ();
-  
+
   field->fd_type = getTypeLoc (D);
   field->fd_name = D->getName ();
   if (D->isBitField ())
@@ -60,7 +63,7 @@ OCamlVisitor::createFieldDecl (clang::FieldDecl *D)
     field->fd_init = must_traverse (D->getInClassInitializer ());
   field->fd_index = D->getFieldIndex ();
   field->fd_mutable = D->isMutable ();
-  
+
   return field;
 }
 
@@ -668,4 +671,9 @@ UNIMP_DECL (OMPDistributeParallelForDirective)
 UNIMP_DECL (OMPTargetParallelForSimdDirective)
 UNIMP_DECL (OMPDistributeParallelForSimdDirective)
 UNIMP_DECL (ObjCAvailabilityCheckExpr)
+UNIMP_DECL (ExportDecl)
+UNIMP_DECL (UsingPackDecl)
+UNIMP_DECL (BindingDecl)
+UNIMP_DECL (CXXDeductionGuideDecl)
+UNIMP_DECL (DecompositionDecl)
 // }}}
