@@ -104,7 +104,7 @@ OCamlChecker::checkASTDecl (clang::TranslationUnitDecl const *D,
       assert (OCamlADTBase::values_created == OCamlADTBase::num_global_ids);
 
       clang::SourceManager &SM = ctx->getSourceManager ();
-      char const *filename = SM.getFileEntryForID (SM.getMainFileID ())->getName ();
+      const char *filename = SM.getFileEntryForID (SM.getMainFileID ())->getName ().data();
 
       value *cb = caml_named_value ("success");
       // val success : decl -> string -> context -> unit

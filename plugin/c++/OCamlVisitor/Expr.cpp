@@ -285,7 +285,7 @@ OCamlVisitor::TraverseDesignator (clang::DesignatedInitExpr::Designator D,
       dr = mkArrayRangeDesignator (start, end);
     }
   else
-    assert (!"Invalid or unknown designator");
+    assert (false);
 
   ptr<Desg> designator = mkDesg ();
   designator->dr = dr;

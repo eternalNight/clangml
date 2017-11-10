@@ -77,7 +77,7 @@ read_symtab (bfd *abfd)
                                      (PTR *)&syms, &size);
 
   if (symcount < 0)
-    throw std::runtime_error (bfd_get_filename (abfd));
+    throw std::runtime_error ("read symtab failed");
 
   return syms;
 }

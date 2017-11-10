@@ -70,7 +70,7 @@ public:
     {
       if (!px)
         return nullptr;
-      return dynamic_stack_detail::adt_cast<T> (px);
+      return dynamic_stack_detail::adt_cast<T> (px).get();
     }
 
     explicit operator bool () const { return !!px; }
